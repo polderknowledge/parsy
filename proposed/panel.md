@@ -10,12 +10,12 @@ The panel pattern can be used to group content together. A page could contain
 multiple panels. A panel is a section on a page that can be used to identify 
 content, it exists out of three parts:
 
-1. A header
+1. A header (which is optional).
 2. A body
-3. A footer
+3. A footer (which is optional)
 
-The body contains the content of the panel, the header can be used to add an 
-optional title to the content and the footer can be used to put secondary text
+The body contains the content of the panel, the optional header can be used to add an 
+title to the content and the optional footer can be used to put secondary text
 and/or buttons.
 
 ## References
@@ -25,11 +25,13 @@ and/or buttons.
 
 ## Requirements
 
-- It must be possible to style the component in any way one likes.
-- The panel component must have three sections, a header, a body and a footer.
-- The component is a static component so no interaction is required.
-- It must be possible to add options to the panel header. This way it becomes 
+- It MUST be possible to style the component in any way one likes.
+- The panel component MUST at least have a body section.
+- The panel component MAY HAVE an optional header section.
+- It MUST be possible to add options to the panel header. This way it becomes 
 possible to add tabs or icons on the right side of the panel header.
+- The panel component MAY HAVE an optional footer section.
+- The component is a static component so no interaction is required.
 
 # Case studies
 
@@ -53,8 +55,7 @@ component code). The following is an example API format that you can re-use.
 
 ## Constraints
 
-It is invalid to create an `<span>` with for example the classes `block spread`.
-Component
+There are no additional constraints for this component.
 
 ## Classes
 
