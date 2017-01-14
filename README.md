@@ -22,22 +22,23 @@ you to use a certain framework. Therefor a pattern starts with a good descriptio
  
 ## Why?
 
-We are sure that we are solving the same UX/UI problems every day. Sometimes the basic patterns and sometimes the 
-complex ones. Therefor we believe in a library like this to describe these problems so we are able to recognize them
-and choose for an existing implementation before writing our own.
+We are sure that we are solving the same UX/UI problems every day. Sometimes these problems relate to basic patterns 
+and other times they are more complex. Therefor we believe in a library like this to describe these problems
+ so we are able to recognize them and choose for an existing implementation before writing our own.
 
-This are some good reads that inspired us to start with this project:
+These are some good reads that inspired us to start with this project:
 - http://www.webdesignerdepot.com/2016/12/why-you-should-be-using-pattern-libraries/
 - https://articles.uie.com/components_vs_patterns/
 
 ## Contribute
 
 All contributions are welcome, you don't have to be a full blown front-end developer to contribute to Parsy. Not 
-everybody writing a pattern should be able to implement it. In many cases you will recognize patterns in a UI. 
-Solutions to common problems. That's exactly what we are looking for! Describe the problem, describe how it is 
+everybody writing a pattern should be able to implement it. In many cases you will recognize patterns by spotting 
+repetition in user interfaces, solutions to common problems. That's exactly what we are looking for! Describe the 
+problem, describe how it is 
 solved, and create a proposal with our [template]. It doesn't have to be a final version. We are here to help! Every 
 proposal will be reviewed and shaped until it is ready for approval. We believe that first time right doesn't exist, 
-or it is just a lucky shot. Even if you are not sure if the problem you described is a pattern please submit your 
+or it is just a lucky shot. Even if you are not sure if the problem you described is a pattern, please submit your 
 idea that will help others to write even better proposals.
 
 ### Create a new proposal
