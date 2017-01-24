@@ -6,7 +6,7 @@ Parsy
 
 * Author: `Lorenzo Wallerlei, lorenzo@polderknowledge.nl`
 * Date: `19-01-2017`
-* Repository name: `Form`
+* Repository name: `FormComponent`
 
 ## Goals
 
@@ -23,12 +23,12 @@ http://webaim.org/techniques/forms/controls
 
 ## Requirements
 
-- All the inputs within the form should contain a tab index.
-- All the inputs should have error messages if there is some sort of validation on that specific input
-- Inputs Must have labels
-- Form must have an action attribute
-- If there is a collection of inputs it must be surrounded by a fieldset.
-- If you use an fieldset you must use a legend for it.
+- All the inputs within the form SHOULD contain a tab index.
+- All the inputs SHOULD have error messages if there is some sort of validation on that specific input
+- Inputs MUST have labels
+- Form MUST have an action attribute
+- If there is a collection of inputs it MUST be surrounded by a fieldset.
+- If you use an fieldset you MUST use a legend for it.
 
 # Case studies `<Optional>`
 
@@ -36,7 +36,7 @@ Not applied.
 
 ## Existing implementations
 
-https://www.tax.service.gov.uk/gg/sign-in?continue=%2Faccount&origin=unknown
+[https://www.tax.service.gov.uk/gg/sign-in?continue=%2Faccount&origin=unknown]
 
 What it does good.
 - Form fields are described by labels.
@@ -75,7 +75,7 @@ TBD.
 
 ### How to use the component with a keyboard only
 
-This must be entirely usable with only the tab key.
+This MUST be entirely usable with only the tab key.
 
 ### How a screen-reader user will interact with the component
 
