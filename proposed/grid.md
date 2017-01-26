@@ -34,7 +34,9 @@ A column can only be positioned in a row.
 <TDB>
 
 ## Existing implementations
-<TDB>
+- [A standalone flexbox example.][reference-flexboxgrid]
+- [Bootstrap has an implementation][reference-bootstrap]
+- [Foundation has an implementation][reference-foundation]
 
 ## Proof of concept
 <TDB>
