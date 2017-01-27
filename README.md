@@ -23,7 +23,7 @@ easy to adopt a new framework or library. With Parsy we want to give you a choic
 ## Why?
 
 We are sure that we are solving the same UX/UI problems every day. Sometimes these problems relate to basic patterns 
-and other times they are more complex. Therefor we believe in a library, like this, to describe these problems so we 
+and other times they are more complex. Therefor we believe in a library like this, to describe these problems so we 
 are able to recognize them and choose for an existing implementation before writing our own.
 
 These are some good reads that inspired us to start with this project:
@@ -43,10 +43,10 @@ described is a pattern, please submit your idea in order to help others writing 
 ### Create a new proposal
 
 To create a new proposal fork this repository and create a new markdown file based on the [template] in this 
-repository. You can create a PR with the new file in the proposed directory. The file **MUST** be named with the name 
+repository. You can create a Pull Request with the new file in the proposed directory. The file **MUST** be named with the name 
 of your component or pattern.
 
-After your PR was accepted the proposed pattern will be moved to the accepted directory by one of the owners.
+After your PR is accepted the proposed pattern will be moved to the accepted directory by one of the owners.
 
 ### Assets
 
