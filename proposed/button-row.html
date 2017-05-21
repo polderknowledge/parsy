@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta id="meta" name="viewport" content="width=device-width" />
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        pre, code {
+            font-family: monospace;
+        }
+        .document-metadata > tbody > tr > td:first-child {
+            padding-right: 15px;
+        }
+        .document-metadata > tbody > tr > td:first-child::after {
+            content: ":";
+        }
+
+        /* styles specifically for the demo */
+        code {
+            white-space: pre;
+        }
+        .demo {
+            padding: 20px;
+            background-color: white;
+            border-color: grey;
+        }
+        .demo .container {
+            border: 1px solid darkgrey;
+            padding: 15px;
+        }
+
+        /* button styling and reset provided by your css library */
+        .button {
+            text-align: center;
+            font-size: 1rem;
+            color: white;
+            padding: .5em 1em;
+            border: 1px solid darkred;
+            border-radius: 4px;
+            background-color: red;
+            text-decoration: none;
+        }
+        .button:focus {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+<h1>Button Row</h1>
+
+<table class="document-metadata">
+    <tr>
+        <td>Author</td>
+        <td>Erik van Velzen, erik@polderknowledge.nl, erik@evanv.nl</td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td>21-05-2017</td>
+    </tr>
+    <tr>
+        <td>Repository name</td>
+        <td>button-row</td>
+    </tr>
+<table>
+
+<h2>Goals</h2>
+
+<p>When displaying buttons:</p>
+<ul>
+    <li>Buttons should space correctly amongst eachother</li>
+    <li>Buttons should fit exactly in their common container: the buttons should touch the padding of the container on all sides</li>
+    <li>It should space correctly when the buttons don't fit on one row</li>
+</ul>
+
+<h2>Implementation</h2>
+
+<p>Resize your window to view the behaviour.</p>
+
+<section id="implementation-base">
+    <h3>Base</h3>
+
+    <div class="demo">
+        <div class="container">
+            <div class="button-row">
+                <button class="button">Very</button>
+                <a href="#" class="button">Many</a>
+                <a href="#" class="button">More</a>
+                <a href="#" class="button">Buttons</a>
+                <a href="#" class="button">And one with a very long label</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* styles relevant for this pattern */
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin: -.2em;
+        }
+        .button-row > * {
+            margin: .2em;
+        }
+    </style>
+
+    <pre>
+        &lt;style&gt;
+            .button-row {
+                display: flex; /* flexbox resolves many spacing issues for us */
+                flex-wrap: wrap;
+                align-items: flex-start;
+                margin: -.2em; /* negative margin is equal to the positive margin of the buttons */
+            }
+            .button-row &gt; * {
+                margin: .2em;
+            }
+        &lt;/style&gt;
+
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;button-row&quot;&gt;
+                &lt;button class=&quot;button&quot;&gt;Very&lt;/button&gt;
+                &lt;a class=&quot;button&quot;&gt;Many&lt;/a&gt;
+                &lt;a class=&quot;button&quot;&gt;More&lt;/a&gt;
+                &lt;a class=&quot;button&quot;&gt;Buttons&lt;/a&gt;
+                &lt;a class=&quot;button&quot;&gt;And one with a very long label&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </pre>
+</section>
+
+<section id="full-width-buttons">
+    <h3>Full-width buttons on mobile</h3>
+
+    <div class="demo">
+        <div class="container">
+            <div class="button-row">
+                <button class="button">Very</button>
+                <a href="#" class="button">Many</a>
+                <a href="#" class="button">More</a>
+                <a href="#" class="button">Buttons</a>
+                <a href="#" class="button">And one with a very long label</a>
+            </div>
+        </div>
+    </div>
+
+    <pre>
+        @media(max-width: 576px) {
+            .button-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </pre>
+
+    <style scoped>
+        @media(max-width: 576px) {
+            section#full-width-buttons .button-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</section>
+
+<section id="truncate-button-text">
+    <h3>If you don't want line breaks in buttons</h3>
+
+    <div class="demo">
+        <div class="container">
+            <div class="button-row">
+                <button class="button">Very</button>
+                <a href="#" class="button">Many</a>
+                <a href="#" class="button">More</a>
+                <a href="#" class="button">Buttons</a>
+                <a href="#" class="button truncating-button">And one with a very long label</a>
+            </div>
+        </div>
+    </div>
+
+    <pre>
+        .truncating-button {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </pre>
+
+    <style scoped>
+        section#truncate-button-text .truncating-button {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</section>
+
+<h2>API</h2>
+
+<p>Should we define any classes? SASS mixins? Should we prefix them with "pk-"? Publish an NPM package?</p>
+
+<h2>Accessibility</h2>
+
+<p>This pattern has no specific accessibility demands. For the buttons themselves, the usual guidelines apply:</p>
+<ul>
+    <li>Stick to the standard elements A and BUTTON (for all users with a disability)</li>
+    <li>Don't use icon-only buttons (for screen readers)</li>
+    <li>Make sure your theme uses a distinct :focus style (for users unable to use point-and-click)</li>
+</ul>
+
+<h2>Roadmap and timeline</h2>
+
+<p>Please discuss</p>
+</body>
+</html>
