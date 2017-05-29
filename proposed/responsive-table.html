@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta id="meta" name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <style>
+        * {
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        code, .display-css {
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        code::first-line, .display-css::first-line {
+            line-height: 0px;
+        }
+        .document-metadata > tbody > tr > td:first-child {
+            padding-right: 15px;
+        }
+        .document-metadata > tbody > tr > td:first-child::after {
+            content: ":";
+        }
+
+        /* styles specifically for the demo */
+        .demo {
+            padding: 20px;
+            background-color: white;
+            border-color: grey;
+        }
+        .demo .container {
+            border: 1px solid darkgrey;
+            padding: 15px;
+        }
+
+        style.display-css {
+            display: block;
+        }
+
+        /* table styling and reset provided by your css library */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #f8f8f8;
+        }
+        .table td, .table th {
+            padding: .75rem;
+            text-align: left;
+        }
+        .table tr {
+            border-top: 2px solid #eceeef;
+        }
+        .key, label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Responsive Table</h1>
+
+<table class="document-metadata">
+    <tr>
+        <td>Author</td>
+        <td>Erik van Velzen, erik@polderknowledge.nl, erik@evanv.nl</td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td>22-05-2017</td>
+    </tr>
+    <tr>
+        <td>Repository name</td>
+        <td>responsive-table</td>
+    </tr>
+</table>
+
+<h2>Goals</h2>
+
+<p>When displaying tabular data it should look correct on any device</p>
+<ul>
+    <li>On small screens there should be no scrolling to the side</li>
+    <li>It should be clear which headers belong to which values</li>
+    <li>Some customization of the content should be allowed</li>
+</ul>
+
+<h2>Implementation using css-flexbox</h2>
+
+<p>Resize your window to view the behaviour.</p>
+
+<h3>Labels to the left of values</h3>
+
+<div class="demo" id="demo-flexbox-labels-left">
+    <div class="container">
+        <table class="table responsive-table labels-left">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Created</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="key">No</div>
+                        <div class="value">20078</div>
+                    </td>
+                    <td>
+                        <div class="key">Created</div>
+                        <div class="value">22-05-2017 11:02</div>
+                    </td>
+                    <td>
+                        <div class="key">Customer</div>
+                        <div class="value">ACME</div>
+                    </td>
+                    <td>
+                        <div class="key">Amount</div>
+                        <div class="value">2.020,84</div>
+                    </td>
+                    <td>
+                        <div class="key">Address</div>
+                        <div class="value">
+                          Veemarktkade 8 / 4251 <br />
+                          5222 AE  ‘s-Hertogenbosch
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="key">No</div>
+                        <div class="value">20079</div>
+                    </td>
+                    <td>
+                        <div class="key">Created</div>
+                        <div class="value">22-05-2017 11:09</div>
+                    </td>
+                    <td>
+                        <div class="key">Customer</div>
+                        <div class="value">De Gruyterfabriek</div>
+                    </td>
+                    <td>
+                        <div class="key">Amount</div>
+                        <div class="value">300,00</div>
+                    </td>
+                    <td>
+                        <div class="key">Address</div>
+                        <div class="value">
+                            Veemarktkade 8 <br />
+                            5222 AE  ‘s-Hertogenbosch
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<code data-insert-html="#demo-flexbox-labels-left .container">
+
+</code>
+
+<style class="display-css">
+    /* full-size table defaults */
+    .responsive-table .key {
+        display: none;
+    }
+
+    /* convert to flexbox when < 900px */
+    @media(max-width: 900px) {
+        .responsive-table thead {
+            display: none;
+        }
+        .responsive-table tr {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .responsive-table td {
+            display: flex;
+        }
+        .responsive-table .key {
+            display: block;
+        }
+        /* create 2 columns of the same width */
+        .responsive-table.labels-left td {
+            width: 50%;
+        }
+        .responsive-table.labels-left .key {
+            width: 30%;
+        }
+        .responsive-table {
+            /* only necessary for microsoft */
+            table-layout: fixed;
+        }
+    }
+
+    @media(max-width: 750px) {
+        .responsive-table.labels-left td {
+            width: 100%;
+            padding: .5em; /* reduce padding */
+        }
+        .responsive-table.labels-left tr {
+            padding: .5em;
+        }
+    }
+</style>
+
+<h3>Labels above values</h3>
+
+<div class="demo">
+    <div class="container">
+        <table class="table responsive-table labels-above">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Created</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="key">No</div>
+                        <div class="value">20078</div>
+                    </td>
+                    <td>
+                        <div class="key">Created</div>
+                        <div class="value">22-05-2017 11:02</div>
+                    </td>
+                    <td>
+                        <div class="key">Customer</div>
+                        <div class="value">ACME</div>
+                    </td>
+                    <td>
+                        <div class="key">Amount</div>
+                        <div class="value">2.020,84</div>
+                    </td>
+                    <td>
+                        <div class="key">Address</div>
+                        <div class="value">
+                          Veemarktkade 8 / 4251 <br />
+                          5222 AE  ‘s-Hertogenbosch
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="key">No</div>
+                        <div class="value">20079</div>
+                    </td>
+                    <td>
+                        <div class="key">Created</div>
+                        <div class="value">22-05-2017 11:09</div>
+                    </td>
+                    <td>
+                        <div class="key">Customer</div>
+                        <div class="value">De Gruyterfabriek</div>
+                    </td>
+                    <td>
+                        <div class="key">Amount</div>
+                        <div class="value">300,00</div>
+                    </td>
+                    <td>
+                        <div class="key">Address</div>
+                        <div class="value">
+                            Veemarktkade 8 <br />
+                            5222 AE  ‘s-Hertogenbosch
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style class="display-css">
+    @media(max-width: 900px) {
+        .responsive-table.labels-above td {
+            flex-direction: column;
+            width: 50%;
+        }
+    }
+
+    @media(max-width: 570px) {
+        .responsive-table.labels-above td {
+            width: 100%;
+            padding: 0.5em; /* reduce inner padding */
+        }
+        .responsive-table.labels-above tr {
+            padding: 0.5em; /* increase outer padding */
+        }
+    }
+</style>
+
+<h2>Implementation using css-grid</h2>
+
+<p>Grid offers superior automatic sizing, but it requires a flat html structure.</p>
+
+<h3>Labels to the left of values</h3>
+
+<div class="demo" id="demo-grid-labels-left">
+    <div class="container">
+        <div class="grid-data-table labels-left">
+            <div class="column-header">No</div>
+            <div class="column-header">Created</div>
+            <div class="column-header">Customer</div>
+            <div class="column-header">Amount</div>
+            <div class="column-header">Address</div>
+
+            <hr class="column-header" />
+
+            <label>No</label>
+            <div class="value">20078</div>
+            <label>Created</label>
+            <div class="value">22-05-2017 11:02</div>
+            <label>Customer</label>
+            <div class="value">ACME</div>
+            <label>Amount</label>
+            <div class="value">2.020,84</div>
+            <label>Address</label>
+            <div class="value">
+              Veemarktkade 8 / 4251 <br />
+              5222 AE  ‘s-Hertogenbosch
+            </div>
+            <hr />
+
+            <label>No</label>
+            <div class="value">20079</div>
+            <label>Created</label>
+            <div class="value">22-05-2017 11:09</div>
+            <label>Customer</label>
+            <div class="value">De Gruyterfabriek</div>
+            <label>Amount</label>
+            <div class="value">300,00</div>
+            <label>Address</label>
+            <div class="value">
+                Veemarktkade 8 <br />
+                5222 AE  ‘s-Hertogenbosch
+            </div>
+        </div>
+    </div>
+</div>
+
+<code data-insert-html="#demo-grid-labels-left .container">
+
+</code>
+
+<style class="display-css">
+    .grid-data-table {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+    }
+    .grid-data-table label {
+        display: none;
+    }
+    .grid-data-table > hr {
+        width: 100%;
+        padding: 0;
+        border: 0;
+        border-top: 2px solid #eceeef;
+        grid-column-start: 1;
+        grid-column-end: -1;
+    }
+
+    @media(max-width: 900px) {
+        .grid-data-table label {
+            display: block;
+        }
+        .grid-data-table > .column-header {
+            display: none;
+        }
+        .grid-data-table.labels-left {
+            grid-template-columns: repeat(4, auto);
+        }
+    }
+
+    @media(max-width: 700px) {
+        .grid-data-table.labels-left {
+            grid-template-columns: repeat(2, auto);
+        }
+    }
+</style>
+
+<p>Microsoft uses an older implementation of css-grid, in ie10+ and current version of edge. It requires to explicitly assign cells to columns and rows. This makes it very verbose. Below is a part of an implementation. In SASS you could use @for to reduce repetition</p>
+
+<style class="display-css">
+    .grid-data-table {
+        display: -ms-grid;
+        /**
+         * some tradeoffs have to be made here but this seems a good compromise for most cases
+         * if you have a column with longer text which you want to wrap
+         * you'll want to use min-content instead of max-content for that column
+         */
+        -ms-grid-columns: (minmax(max-content, calc(2000px / 5)))[5];
+    }
+
+    /* columns */
+    .grid-data-table > div:nth-of-type(5n + 1) {
+        -ms-grid-column: 1;
+    }
+    .grid-data-table > div:nth-of-type(5n + 2) {
+        -ms-grid-column: 2;
+    }
+    .grid-data-table > div:nth-of-type(5n + 3) {
+        -ms-grid-column: 3;
+    }
+    .grid-data-table > div:nth-of-type(5n + 4) {
+        -ms-grid-column: 4;
+    }
+    .grid-data-table > div:nth-of-type(5n + 5) {
+        -ms-grid-column: 5;
+    }
+
+    /* rows */
+    .grid-data-table > div:nth-of-type(n + 6) {
+        -ms-grid-row: 3;
+    }
+    .grid-data-table > div:nth-of-type(n + 11) {
+        -ms-grid-row: 5;
+    }
+
+    /* ruler between rows */
+    .grid-data-table > hr {
+        -ms-grid-column-span: 5;
+        margin: 0px; /* somehow fixes padding for microsoft */
+    }
+    .grid-data-table > hr:nth-of-type(1) {
+        -ms-grid-row: 2;
+    }
+    .grid-data-table > hr:nth-of-type(2) {
+        -ms-grid-row: 4;
+    }
+
+    @media(max-width: 900px) {
+        .grid-data-table {
+            -ms-grid-columns: (minmax(max-content, calc(900px / 4)))[4];
+        }
+
+        /* columns */
+        .grid-data-table > label:nth-of-type(5n + 1),
+        .grid-data-table > label:nth-of-type(5n + 3),
+        .grid-data-table > label:nth-of-type(5n + 5) {
+            -ms-grid-column: 1;
+        }
+        .grid-data-table > div:nth-of-type(5n + 1),
+        .grid-data-table > div:nth-of-type(5n + 3),
+        .grid-data-table > div:nth-of-type(5n + 5) {
+            -ms-grid-column: 2;
+        }
+        .grid-data-table > label:nth-of-type(5n + 2),
+        .grid-data-table > label:nth-of-type(5n + 4) {
+            -ms-grid-column: 3;
+        }
+        .grid-data-table > div:nth-of-type(5n + 2),
+        .grid-data-table > div:nth-of-type(5n + 4) {
+            -ms-grid-column: 4;
+        }
+
+        /* data row 1, use !important to override the stronger :nth-of-type selector */
+        .grid-data-table > *:nth-child(n + 7) {
+            -ms-grid-row: 1 !important;
+        }
+        .grid-data-table > *:nth-child(n + 11) {
+            -ms-grid-row: 2 !important;
+        }
+        .grid-data-table > *:nth-child(n + 15) {
+            -ms-grid-row: 3 !important;
+        }
+
+        .grid-data-table > hr:nth-of-type(2) {
+            -ms-grid-row: 4 !important;
+        }
+
+        /* data row 2 */
+        .grid-data-table > *:nth-child(n + 18) {
+            -ms-grid-row: 5 !important;
+        }
+        .grid-data-table > *:nth-child(n + 22) {
+            -ms-grid-row: 6 !important;
+        }
+        .grid-data-table > *:nth-child(n + 26) {
+            -ms-grid-row: 7 !important;
+        }
+
+        .grid-data-table > hr:nth-of-type(3) {
+            -ms-grid-row: 8 !important;
+        }
+    }
+
+    @media(max-width: 700px) {
+        .grid-data-table.labels-left {
+            -ms-grid-columns: (minmax(max-content, calc(700px / 2)))[2];
+        }
+        /* implementation missing */
+    }
+</style>
+
+<style>
+    /* styling not core to the pattern */
+    .grid-data-table .column-header {
+        font-weight: bold;
+    }
+    .grid-data-table {
+        background-color: #f8f8f8;
+    }
+    .grid-data-table > div,
+    .grid-data-table > label {
+        padding: .75em;
+    }
+</style>
+
+<h3>Labels above values</h3>
+
+<div class="demo" id="demo-grid-labels-above">
+    <div class="container">
+        <div class="grid-data-table labels-above">
+            <div class="column-header">No</div>
+            <div class="column-header">Created</div>
+            <div class="column-header">Customer</div>
+            <div class="column-header">Amount</div>
+            <div class="column-header">Address</div>
+
+            <hr class="column-header" />
+
+            <div>
+                <label>No</label>
+                <div class="value">20078</div>
+            </div>
+            <div>
+                <label>Created</label>
+                <div class="value">22-05-2017 11:02</div>
+            </div>
+            <div>
+                <label>Customer</label>
+                <div class="value">ACME</div>
+            </div>
+            <div>
+                <label>Amount</label>
+                <div class="value">2.020,84</div>
+            </div>
+            <div>
+                <label>Address</label>
+                <div class="value">
+                  Veemarktkade 8 / 4251 <br />
+                  5222 AE  ‘s-Hertogenbosch
+                </div>
+            </div>
+
+            <hr />
+
+            <div>
+                <label>No</label>
+                <div class="value">20079</div>
+            </div>
+            <div>
+                <label>Created</label>
+                <div class="value">22-05-2017 11:09</div>
+            </div>
+            <div>
+                <label>Customer</label>
+                <div class="value">De Gruyterfabriek</div>
+            </div>
+            <div>
+                <label>Amount</label>
+                <div class="value">300,00</div>
+            </div>
+            <div>
+                <label>Address</label>
+                <div class="value">
+                    Veemarktkade 8 <br />
+                    5222 AE  ‘s-Hertogenbosch
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<code data-insert-html="#demo-grid-labels-above .container">
+
+</code>
+
+<style class="display-css">
+    @media(max-width: 900px) {
+        .grid-data-table.labels-above {
+            grid-template-columns: repeat(4, auto);
+        }
+    }
+
+    @media(max-width: 750px) {
+        .grid-data-table.labels-above {
+            grid-template-columns: repeat(3, auto);
+        }
+    }
+
+    @media(max-width: 600px) {
+        .grid-data-table.labels-above {
+            grid-template-columns: repeat(2, auto);
+        }
+    }
+
+    @media(max-width: 470px) {
+        .grid-data-table.labels-above {
+            grid-template-columns: repeat(1, auto);
+        }
+    }
+</style>
+
+<h2>API</h2>
+
+<p>Usage of this pattern requires some case-by-case tweaking of widths or number of columns. It might not be fit to publish as a library. Please discuss.</p>
+
+<h2>Accessibility</h2>
+
+<p>The use of a native table element may offer users of a screen reader extra information, like the number of columns. The usual guidelines for tables apply in this case</p>
+
+<p>If you do not use a table element the screen reader will read the elements in order of appearance, which is probably sufficient.</p>
+
+<p>The mobile widths work better than desktops for screen readers because the key-value pairs are always in bordering elements.</p>
+
+<h2>Roadmap and timeline</h2>
+
+<p>Please discuss.</p>
+
+<script>
+    // insert html as text into code blocks
+    for (const codeElement of document.querySelectorAll('code[data-insert-html]')) {
+        const selector = codeElement.dataset.insertHtml;
+        codeElement.textContent = document.querySelector(selector).innerHTML;
+    }
+</script>
+
+</body>
+</html>
